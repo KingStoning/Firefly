@@ -1,11 +1,8 @@
-// 修改后的 fontConfig（已加入 工艺 CDN：lxgw-wenkai）
 export const fontConfig = {
-  enable: true, // 启用自定义字体功能
-  preload: true, // 预加载字体文件以提高性能（可按需关闭）
-  // 把工艺字体放在首位；如需仅使用工艺字体，可只保留 "lxgw-wenkai"
-  selected: ["lxgw-wenkai"],
+  enable: true,
+  preload: false, // 预加载可以开启，但先确认 head 引入正常再开启
+  selected: ["lxgw-wenkai", "misans-normal", "system"],
   fonts: {
-    // 系统字体（保留）
     system: {
       id: "system",
       name: "系统字体",
@@ -14,17 +11,15 @@ export const fontConfig = {
         "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
     },
 
-    // 新增：LXGW WenKai (工艺 CDN: jsDelivr 主链)
     "lxgw-wenkai": {
       id: "lxgw-wenkai",
       name: "LXGW WenKai Screen",
-      // 主要使用 jsDelivr 链接；也可替换为 cdnjs / npmmirror 等（见字体参考）。
-      src: "https://jsd.onmicrosoft.cn/npm/lxgw-wenkai-screen-web/style.css",
-      // family 名称写法包含常见别名，确保能被识别
-      family: "'LXGW WenKai', 'LXGW-WenKai', 'WenKai', 'LXGW-WenKai-Screen'",
+      // 指向 Zstatic CDN 的屏幕优化版 CSS（与参考一致）
+      src: "https://s4.zstatic.net/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.min.css",
+      family: "'LXGW WenKai Screen', 'LXGW WenKai', 'LXGW-WenKai'",
       display: "swap" as const,
-      // 只加载中文子集可以显著减小体积（可按需调整或删除）
-      unicodeRange: "U+4E00-9FFF",
+      // 可移除 unicodeRange（让 CDN 的 CSS 决定子集），若要限制可使用 "U+4E00-9FFF"
+      // unicodeRange: "U+4E00-9FFF",
     },
 
     // 现有 Google / CDN / 本地 字体（保留并未改动）
