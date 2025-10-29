@@ -1,18 +1,33 @@
-// 字体配置
+// 修改后的 fontConfig（已加入 工艺 CDN：lxgw-wenkai）
 export const fontConfig = {
   enable: true, // 启用自定义字体功能
-  preload: true, // 预加载字体文件以提高性能
-  selected: ["system"], // 当前选择的字体，支持多个字体组合
+  preload: true, // 预加载字体文件以提高性能（可按需关闭）
+  // 把工艺字体放在首位；如需仅使用工艺字体，可只保留 "lxgw-wenkai"
+  selected: ["lxgw-wenkai", "misans-normal", "system"],
   fonts: {
-    // 系统字体
+    // 系统字体（保留）
     system: {
       id: "system",
       name: "系统字体",
-      src: "", // 系统字体无需 src
+      src: "",
       family:
-        "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
+        "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
     },
-    // Google Fonts - Zen Maru Gothic
+
+    // 新增：LXGW WenKai (工艺 CDN: jsDelivr 主链)
+    "lxgw-wenkai": {
+      id: "lxgw-wenkai",
+      name: "LXGW WenKai Screen",
+      // 主要使用 jsDelivr 链接；也可替换为 cdnjs / npmmirror 等（见字体参考）。
+      src: "https://jsd.onmicrosoft.cn/npm/lxgw-wenkai-screen-web/style.css",
+      // family 名称写法包含常见别名，确保能被识别
+      family: "'LXGW WenKai', 'LXGW-WenKai', 'WenKai', 'LXGW-WenKai-Screen'",
+      display: "swap" as const,
+      // 只加载中文子集可以显著减小体积（可按需调整或删除）
+      unicodeRange: "U+4E00-9FFF",
+    },
+
+    // 现有 Google / CDN / 本地 字体（保留并未改动）
     "zen-maru-gothic": {
       id: "zen-maru-gothic",
       name: "Zen Maru Gothic",
@@ -20,7 +35,6 @@ export const fontConfig = {
       family: "Zen Maru Gothic",
       display: "swap" as const,
     },
-    // Google Fonts - Inter
     inter: {
       id: "inter",
       name: "Inter",
@@ -28,7 +42,6 @@ export const fontConfig = {
       family: "Inter",
       display: "swap" as const,
     },
-    // 小米字体 - MiSans Normal
     "misans-normal": {
       id: "misans-normal",
       name: "MiSans Normal",
@@ -37,7 +50,6 @@ export const fontConfig = {
       weight: 400,
       display: "swap" as const,
     },
-    // 小米字体 - MiSans Semibold
     "misans-semibold": {
       id: "misans-semibold",
       name: "MiSans Semibold",
@@ -54,5 +66,5 @@ export const fontConfig = {
     "Segoe UI",
     "Roboto",
     "sans-serif",
-  ], // 全局字体回退
+  ],
 };
