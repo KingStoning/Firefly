@@ -3,7 +3,7 @@ export const fontConfig = {
   enable: true, // 启用自定义字体功能
   preload: true, // 预加载字体文件以提高性能（可按需关闭）
   // 把工艺字体放在首位；如需仅使用工艺字体，可只保留 "lxgw-wenkai"
-  selected: ["lxgw-wenkai", "misans-normal", "system"],
+  selected: ["lxgw-wenkai"],
   fonts: {
     // 系统字体（保留）
     system: {
